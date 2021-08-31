@@ -37,14 +37,6 @@ playlist_fields = [
 ]
 
 
-@app.before_request
-def before_request():
-    if 'DYNO' in os.environ:
-        if request.url.startswith('http://'):
-            url = request.url.replace('http://', 'https://', 1)
-            code = 301
-            return redirect(url, code=code)
-
 def session_cache_path():
 	return caches_folder + session.get('uuid')
 
