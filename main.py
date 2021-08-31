@@ -1,13 +1,13 @@
-import json
 import os
 import uuid
 from pprint import pprint
 
-from models import *
-
 import spotipy
-from flask import Flask, redirect, render_template, request, session, jsonify, abort, url_for
+from flask import (Flask, abort, jsonify, redirect, render_template, request,
+                   session)
 from flask_session import Session
+
+from models import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(64)
@@ -37,6 +37,14 @@ playlist_fields = [
 ]
 
 
+@app.before_request
+def before_request():
+    if 'DYNO' in os.environ:
+        if request.url.startswith('http://'):
+            url = request.url.replace('http://', 'https://', 1)
+            code = 301
+            return redirect(url, code=code)
+
 def session_cache_path():
 	return caches_folder + session.get('uuid')
 
@@ -59,7 +67,7 @@ def index():
 
 	cache_handler = spotipy.cache_handler.CacheFileHandler(
 		cache_path=session_cache_path())
-	auth_manager = spotipy.oauth2.SpotifyOAuth(redirect_uri=request.host_url, scope='playlist-modify-public playlist-modify-private playlist-read-private',
+	auth_manager = spotipy.oauth2.SpotifyOAuth(scope='playlist-modify-public playlist-modify-private playlist-read-private',
 											   cache_handler=cache_handler,
 											   show_dialog=True)
 
