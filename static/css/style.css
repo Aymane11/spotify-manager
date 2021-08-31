@@ -1,0 +1,30 @@
+:root {
+    --green: rgba(44, 133, 107, 2);
+    --spotify-green : #1DB954;
+    --white: #FFFFFF;
+    --black: #191414;
+}
+
+.txt{
+    color: var(--white);
+}
+
+.ghost {
+    opacity: 0.4;
+}
+.list-group {
+    margin: 20px;
+}
+
+body {
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    background-color: rgba(44, 133, 107, 100);
+    text-overflow: ellipsis;
+}
+
+.spotify:hover {
+    color: var(--spotify-green);
+}
+
+.spotify {color: var(--black);}

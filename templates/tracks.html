@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+
+{% block body %}
+<div class="vh-100">
+    <div class="align-middle m-auto pt-5">
+        <div class="txt h1">{{ playlist.name }}</div>
+        <button id="get-order" class="btn btn-light">Sort Me 🔧</button>
+        <div id="playlists" class="w-75 mx-auto mt-3">
+            <table class="table table-hover" id="{{playlist._id}}">
+                <thead>
+                    <tr class="">
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Artists</th>
+                        <th scope="col">Preview</th>
+                        <th scope="col">Listen</th>
+                    </tr>
+                </thead>
+                <tbody id="tracks">
+                    {% for track in tracks %}
+                    <tr class="txt" data-id="{{loop.index}}">
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{ track.name }}</td>
+                        <td>{{ track.artists|join(", ") }}</td>
+                        <td><audio controls><source src="{{ track.preview_url }}">Your browser does not support the audio tag.</audio></td>
+                        <td><a class="spotify" href="{{ track.url }}" target="_blank"><i class="fab fa-spotify fa-2x"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock scripts %}

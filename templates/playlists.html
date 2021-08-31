@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block body %}
+<div class="vh-100">
+    <div class="align-middle m-auto pt-5">
+        <div class="txt h1">Hello {{name}} 👋</div>
+        <div class="txt h3">Here are your playlists.</div>
+        <div id="playlists" class="w-75 mx-auto mt-3">
+            {% for playlist in playlists %}
+                    <div class="mx-2 my-2">
+                        <a class="btn btn-light" href="{{ url_for('playlist', playlist_id = playlist._id) }}" role="button">{{ playlist.name|truncate(40) }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block scripts %}
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script>
+    $('#playlists').masonry({
+        // options
+        columnWidth: 20,
+    });
+</script>
+{% endblock scripts %}

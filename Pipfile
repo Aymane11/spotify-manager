@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+spotipy = "*"
+autopep8 = "*"
+flask = "*"
+flask-session = "*"
+waitress = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
