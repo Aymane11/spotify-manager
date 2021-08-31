@@ -16,6 +16,14 @@ $('#tracks').sortable({
     }
 });
 
+// Pause other audio when playing a new one
+window.addEventListener("play", function (evt) {
+    console.log(evt);
+    if (window.$_currentlyPlaying && window.$_currentlyPlaying != evt.target) {
+        window.$_currentlyPlaying.pause();
+    }
+    window.$_currentlyPlaying = evt.target;
+}, true);
 
 // Arrays of "data-id"
 $('#get-order').click(function () {
@@ -24,8 +32,6 @@ $('#get-order').click(function () {
         return;
     }
     else {
-        // Temporary solution
-        // moves.push(document.getElementById("plname").getAttribute("data"));
         var sort1 = $('#tracks').sortable('toArray');
         console.log(sort1);
         $.ajax({
