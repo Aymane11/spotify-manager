@@ -139,3 +139,5 @@ dmypy.json
 .spotify_caches/*
 
 .flask_session/*
+
+start.sh
