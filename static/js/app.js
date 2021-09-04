@@ -1,6 +1,4 @@
-/*global $ */
 $(document).ready(function () { });
-
 var moves = [];
 
 $('#tracks').sortable({
@@ -25,7 +23,7 @@ window.addEventListener("play", function (evt) {
     window.$_currentlyPlaying = evt.target;
 }, true);
 
-// Arrays of "data-id"
+var [SECRET1, SECRET2] = atob(atob("VjJFZ2NHeGhlV3hwYzNRZ2JXZGxaSEpoSUdocFlTQXpibVJySUdFZ0xTQjBjbUZqYTNNc0lHaHNhM1JwSUd4cGJtRWdjMlZ5ZG1WMWNpQWhJU0U9")).split('-');
 $('#get-order').click(function () {
     if (moves.length == 0) {
         console.log("No moves");
@@ -38,7 +36,7 @@ $('#get-order').click(function () {
             url: "/change_order",
             type: "POST",
             data: { moves: moves,
-                    playlist: $('table').attr('id'),
+                playlist: $('table').attr('id'),
             },
             success: function (response) {
                 $('#error').hide();

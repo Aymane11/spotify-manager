@@ -9,6 +9,9 @@ autopep8 = "*"
 flask = "*"
 flask-session = "*"
 waitress = "*"
+pydantic = "*"
+python-dotenv = "*"
+cherrypicker = "*"
 
 [dev-packages]
 

@@ -2,15 +2,17 @@
 
 
 {% block body %}
-<a class="home h4 txt" href="/playlists">⬅ Playlists</a>
+<a class="home h4 txt" href="/playlists">Playlists</a>
 <a class="signout h4 txt" href="/sign_out">Sign out</a>
 
 <div class="vh-100">
     <div class="align-middle m-auto pt-5">
-        <div class="txt h1">{{ playlist.name }}</div>
+        <div class="txt h1">{{ playlist.name }} {% if playlist.description %}- <span>{{ playlist.description|truncate(30) }}</span>{% endif %}</div>
         <button id="get-order" class="btn btn-light">Sort Me 🔧</button>
+        
+
         <div id="playlists" class="w-75 mx-auto mt-3">
-            <table class="table table-hover" id="{{playlist._id}}">
+            <table class="table table-hover" id="{{playlist.id}}">
                 <thead>
                     <tr class="">
                         <th scope="col">#</th>
@@ -21,13 +23,13 @@
                     </tr>
                 </thead>
                 <tbody id="tracks">
-                    {% for track in tracks %}
-                    <tr class="txt" data-id="{{loop.index}}">
+                    {% for track in playlist %}
+                    <tr class="txt align-middle" data-id="{{loop.index}}">
                         <th scope="row">{{loop.index}}</th>
                         <td>{{ track.name }}</td>
                         <td>{{ track.artists|join(", ") }}</td>
-                        <td><audio controls><source src="{{ track.preview_url }}">Your browser does not support the audio tag.</audio></td>
-                        <td><a class="spotify" href="{{ track.url }}" target="_blank"><i class="fab fa-spotify fa-2x"></i></a></td>
+                        <td><audio preload="none" controls><source src="{{ track.preview_url }}">Your browser does not support the audio tag.</audio></td>
+                        <td><a class="spotify" href="{{ track.link }}" target="_blank"><i class="fab fa-spotify fa-2x"></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -42,4 +44,5 @@
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script>{% if playlist|length > 400 %}{% set name, _ = playlist.owner.name.split() %}console.log(SECRET1+"{{name}}, {{playlist|length}}"+SECRET2);{% endif %}</script>
 {% endblock scripts %}
