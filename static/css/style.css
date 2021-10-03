@@ -1,43 +1,45 @@
 :root {
-    --green: rgba(44, 133, 107, 2);
-    --spotify-green : #1DB954;
-    --white: #FFFFFF;
-    --black: #191414;
+	--green: rgba(44, 133, 107, 2);
+	--spotify-green: #1db954;
+	--white: #ffffff;
+	--black: #191414;
 }
 
-.txt{
-    color: var(--white);
-    text-decoration: none;
+.txt {
+	color: var(--white);
+	text-decoration: none;
 }
 
 .ghost {
-    opacity: 0.4;
+	opacity: 0.4;
 }
 .list-group {
-    margin: 20px;
+	margin: 20px;
 }
 
 body {
-    text-align: center;
-    font-family: 'Nunito', sans-serif;
-    background-color: rgba(44, 133, 107, 100);
-    text-overflow: ellipsis;
+	text-align: center;
+	font-family: "Nunito", sans-serif;
+	background-color: rgba(44, 133, 107, 100);
+	text-overflow: ellipsis;
 }
 
 .spotify:hover {
-    color: var(--spotify-green);
+	color: var(--spotify-green);
 }
 
-.spotify {color: var(--black);}
+.spotify {
+	color: var(--black);
+}
 
 .home {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
 }
 
 .signout {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
