@@ -35,7 +35,8 @@ $('#get-order').click(function () {
         $.ajax({
             url: "/change_order",
             type: "POST",
-            data: { moves: moves,
+            data: {
+                moves: moves,
                 playlist: $('table').attr('id'),
             },
             success: function (response) {
@@ -47,6 +48,6 @@ $('#get-order').click(function () {
                 $('#success').hide();
                 $('#error').show();
             }
-        }).done(() => { location.reload();});
+        }).done(() => { location.reload(); });
     }
 });
